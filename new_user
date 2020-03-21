@@ -1,0 +1,23 @@
+#!/usr/bin/bash
+
+# Inputs
+user=$1
+group=$2
+
+# Add user with group
+sudo useradd -g $group $user
+sudo passwd $user
+echo "- [$user] of [$group] is added."
+
+# /home/$user
+sudo mv /home/$user/ /d/home/$user
+cd /home
+sudo ln -s /d/home/$user $user
+echo "- /home/$user is ready."
+
+# ~/.vimrc
+cd /home/lixiang/git/LinuxSetup
+user_vimrc=/home/$user/.vimrc
+sudo cp ./vimrc $user_vimrc
+sudo sed -i 's/%AUTHOR%/'$user'/g' $user_vimrc
+echo "- ~/.vimrc is ready."

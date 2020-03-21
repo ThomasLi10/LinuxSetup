@@ -1,0 +1,11 @@
+#!/usr/bin/bash
+
+for user in $@
+do
+    sudo userdel $user
+    sudo rm /var/mail/$user -rf
+    sudo rm /home/$user -rf
+    sudo rm /d/home/$user -rf
+    echo "- [$user] is deleted."
+done
+
