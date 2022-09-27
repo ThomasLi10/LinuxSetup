@@ -1,5 +1,11 @@
 #!/usr/bin/bash
 
+if  [ $1 == '-h' ]
+then
+    echo "./new_user [user] [group]"
+    exit 0
+fi
+
 # Inputs
 user=$1
 group=$2
@@ -19,5 +25,7 @@ echo "- /home/$user is ready."
 cd /home/lixiang/git/LinuxSetup
 user_vimrc=/home/$user/.vimrc
 sudo cp ./vimrc $user_vimrc
+sudo chown $user:$group $user_vimrc
 sudo sed -i 's/%AUTHOR%/'$user'/g' $user_vimrc
 echo "- ~/.vimrc is ready."
+

@@ -1,5 +1,12 @@
 #!/usr/bin/bash
 
+if  [ $1 == '-h' ]
+then
+    echo "./del_users [user1] [user2] ..."
+    exit 0
+fi
+
+
 for user in $@
 do
     sudo userdel $user
